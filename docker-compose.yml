@@ -1,4 +1,4 @@
-dockerservices:
+services:
   dev-db:
     image: postgres:13
     ports:
