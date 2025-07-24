@@ -9,7 +9,8 @@ import { PrismaModule } from './prisma/prisma.module';
 @Module({
   imports: [ConfigModule.forRoot({
     isGlobal: true
-  }),AuthModule, UserModule, BookmarkModule, PrismaModule],
+  }), 
+  AuthModule, UserModule, BookmarkModule, PrismaModule],
   providers: [],
 
 })
