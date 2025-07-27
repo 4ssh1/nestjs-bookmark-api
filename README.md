@@ -87,8 +87,8 @@ yarn.lock
 ### 📁 Clone the Repo
 
 ```bash
-git clone https://github.com/<your-github-username>/<your-repo-name>.git
-cd <your-repo-name>
+git clone https://github.com/4ssh1/nestjs-bookmark-api.git
+cd nestjs-bookmark-api
 ```
 
 ### 🐳 Run with Docker
