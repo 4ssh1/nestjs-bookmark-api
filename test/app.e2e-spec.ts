@@ -9,6 +9,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { AuthDto } from 'src/auth/dto';
 import { EditUserDto } from 'src/user/dto';
+import { CreateBookMarkDto } from 'src/bookmark/dto';
 
 describe("App e2e", ()=>{
   let app:INestApplication
@@ -113,8 +114,28 @@ describe("App e2e", ()=>{
 
 
   describe("Bookmark", ()=>{
+
+    describe('Get empty bookmarks', ()=>{
+      it('should get bookmarks', ()=>{
+        return pactum.spec().get('/bookmarks').withHeaders({
+          Authorization: 'Bearer $S{userToken}'
+        }).expectStatus(200)
+          .expectBody([])
+      })
+    })
+
     describe("Create bookmarks", ()=>{
-      
+
+      const dto: CreateBookMarkDto = {
+        title: "First Bookmark",
+        link: 'https://www.google.com',
+      }
+
+      it('shout create bookmark', ()=>{
+        return pactum.spec().post('/bookmarks').withHeaders({
+          Authorization: 'Bearer $S{userToken}'
+        }).withBody(dto).expectStatus(201)
+      })
     })
     describe("Get bookmarks", ()=>{
 
