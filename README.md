@@ -24,7 +24,7 @@ This is a RESTful API for managing personal bookmarks, built with **NestJS** and
 - ✅ Dockerized for development
 - ✅ Environment-based configuration
 - ✅ PostgreSQL with Prisma ORM
-- ⏳ End-to-End Testing (Coming soon)
+- ✅ End-to-End Testing 
 
 ---
 
@@ -36,7 +36,7 @@ This is a RESTful API for managing personal bookmarks, built with **NestJS** and
 - **PostgreSQL** (Database)
 - **Docker & Docker Compose** (Containerization)
 - **Yarn** (Package manager)
-- **Jest** (Testing — coming soon)
+- **Pactum** (Testing)
 
 ---
 
@@ -48,6 +48,12 @@ This is a RESTful API for managing personal bookmarks, built with **NestJS** and
 .env.test
 .prettierrc
 dist
+docker-compose.yml
+eslint.config.mjs
+generated
+nest-cli.json
+package.json
+prisma
 README.md
 src
 ├── app.module.ts
@@ -111,7 +117,6 @@ yarn test:e2e
 
 ## ✅ Future Tasks
 
-- Add E2E tests using @nestjs/testing
 - Add Swagger/OpenAPI documentation
 - Add Rate Limiting & Logging
 - CI/CD with GitHub Actions
