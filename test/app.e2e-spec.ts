@@ -1,6 +1,5 @@
 import * as dotenv from 'dotenv';
 dotenv.config({ path: './.env.test' })
-    // "pretest:e2e": "yarn db:test:restart",
 import {Test} from '@nestjs/testing';
 import * as pactum from 'pactum';
 import {AppModule } from '../src/app.module';
@@ -19,21 +18,21 @@ describe("App e2e", ()=>{
       imports: [AppModule]
     }).compile();
 
-   app = moduleRef.createNestApplication()
+    app = moduleRef.createNestApplication()
    app.useGlobalPipes(new ValidationPipe({whitelist: true}))
 
     await app.init()
-
+    
     await app.listen(3333) //pactum requires this
 
     prisma = app.get(PrismaService)
 
     await prisma.cleanDb()
-
+    
     pactum.request.setBaseUrl('http://localhost:3333')
-
+    
   }) 
-
+  
   afterAll(()=>{
     app.close()
   })
@@ -111,7 +110,7 @@ describe("App e2e", ()=>{
 
 
   describe("Bookmark", ()=>{
-
+    
     describe('Get empty bookmarks', ()=>{
       it('should get bookmarks', ()=>{
         return pactum.spec().get('/bookmarks').withHeaders({
@@ -122,7 +121,7 @@ describe("App e2e", ()=>{
     })
 
     describe("Create bookmarks", ()=>{
-
+      
       const dto: CreateBookMarkDto = {
         title: "First Bookmark",
         link: 'https://www.google.com',
@@ -161,7 +160,7 @@ describe("App e2e", ()=>{
                      .withBody(dto)
                      .withHeaders({
                         Authorization: 'Bearer ${userToken}'
-                     }).expectStatus(200).expectBodyContains(dto.title)
+                      }).expectStatus(200).expectBodyContains(dto.title)
                      .expectBodyContains(dto.description)
       })
     })
@@ -178,7 +177,8 @@ describe("App e2e", ()=>{
                      .withHeaders({
                         Authorization: 'Bearer ${userToken}'
                      }).expectStatus(200).expectJsonLength(0)
-      })
+                    })
     })
   })
+// "pretest:e2e": "yarn db:test:restart",
 })
