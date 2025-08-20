@@ -1,15 +1,15 @@
 import * as dotenv from 'dotenv';
-dotenv.config({ path: '.env.test' })
-
+dotenv.config({ path: './.env.test' })
+    // "pretest:e2e": "yarn db:test:restart",
 import {Test} from '@nestjs/testing';
 import * as pactum from 'pactum';
 import {AppModule } from '../src/app.module';
 import { INestApplication } from '@nestjs/common';
 import { ValidationPipe } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { AuthDto } from 'src/auth/dto';
-import { EditUserDto } from 'src/user/dto';
-import { CreateBookMarkDto, EditBookMarkDto } from 'src/bookmark/dto';
+import { PrismaService } from '../src/prisma/prisma.service';
+import { AuthDto } from '../src/auth/dto';
+import { EditUserDto } from '../src/user/dto';
+import { CreateBookMarkDto, EditBookMarkDto } from '../src/bookmark/dto';
 
 describe("App e2e", ()=>{
   let app:INestApplication
@@ -167,15 +167,14 @@ describe("App e2e", ()=>{
     })
     describe("Delete bookmark", ()=>{
       it('should delete bookmark by id', ()=>{
-        return pactum.spec().patch('/bookmarks/{id}')
+        return pactum.spec().delete('/bookmarks/{id}')
                      .withPathParams('id', '$S{bookmarkID}')
                      .withHeaders({
-                        Authorization: 'Bearer ${userToken}'
+                        Authorization: 'Bearer $S{userToken}'
                      }).expectStatus(204)
       })
       it('should get empty bookmarks', ()=>{
         return pactum.spec().get('/bookmarks')
-                     .withPathParams('id', '$S{bookmarkID}')
                      .withHeaders({
                         Authorization: 'Bearer ${userToken}'
                      }).expectStatus(200).expectJsonLength(0)

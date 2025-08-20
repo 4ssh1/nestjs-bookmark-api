@@ -62,7 +62,7 @@ export class BookmarkService {
         if(!bookmark || bookmark.userId !== userId)
             throw new ForbiddenException('Access denied')
 
-        await this.prisma.delete({
+        await this.prisma.bookmark.delete({
             where: {
                 id: bookmarkId
             }

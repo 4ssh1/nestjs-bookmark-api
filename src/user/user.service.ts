@@ -14,9 +14,8 @@ export class UserService {
                 ...dto
             }
         })
-
-        delete user.hash
-
-        return user
+        const { hash, ...result } = user
+        
+        return result
     }
 }
