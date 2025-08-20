@@ -14,7 +14,7 @@
 
 ## 🚀 Project Overview
 
-This is a RESTful API for managing personal bookmarks, built with **NestJS** and **Express**, using **Prisma ORM** connected to a **PostgreSQL** database. It is containerized with **Docker** and managed with **Yarn** workspaces.
+This is a RESTful API for managing personal bookmarks, built with **NestJS** and **Express**, using **Prisma ORM** connected to a **PostgreSQL** database. It is containerized with **Docker** and managed with **Yarn** workspaces. Tested end-to-end with **Pactum**
 
 ---
 
