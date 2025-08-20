@@ -6,6 +6,7 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Yarn](https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+![Pactum](https://img.shields.io/badge/Pactum-000000?style=for-the-badge)
 
 ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=4ssh1.nestjs-bookmark-api)
 
