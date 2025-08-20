@@ -13,13 +13,14 @@ import { CreateBookMarkDto, EditBookMarkDto } from '../src/bookmark/dto';
 describe("App e2e", ()=>{
   let app:INestApplication
   let prisma: PrismaService
+
   beforeAll(async ()=> {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule]
     }).compile();
 
     app = moduleRef.createNestApplication()
-   app.useGlobalPipes(new ValidationPipe({whitelist: true}))
+    app.useGlobalPipes(new ValidationPipe({whitelist: true}))
 
     await app.init()
     
@@ -33,7 +34,8 @@ describe("App e2e", ()=>{
     
   }) 
   
-  afterAll(()=>{
+  afterAll(async ()=>{
+    await prisma.$disconnect();
     app.close()
   })
 
@@ -99,12 +101,14 @@ describe("App e2e", ()=>{
         firstName: "Sarah",
         lastName: "Nzeshi"
       }
-      return pactum.spec().patch('/users').withHeaders({
-        Authorization: 'Bearer $S{userToken}'
-      }).expectStatus(200).withBody(dto)
-        .expectBodyContains(dto.firstName)
-        .expectBodyContains(dto.email)
-    })
+      it('should get edited user', ()=>{
+        return pactum.spec().patch('/users').withHeaders({
+          Authorization: 'Bearer $S{userToken}'
+        }).expectStatus(200).withBody(dto)
+          .expectBodyContains(dto.firstName)
+          .expectBodyContains(dto.email)
+      })
+      })
     
   })
 

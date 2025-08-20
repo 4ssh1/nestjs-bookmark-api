@@ -1,24 +1,35 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 
 @Injectable()
-export class PrismaService extends PrismaClient{
-    constructor(){
-        super({
-            datasources: {
-                db:{
-                    url: process.env.DATABASE_URL
-                }
-            }
-        })
+export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
+  constructor() {
+    super({
+      datasources: {
+        db: {
+          url: process.env.DATABASE_URL,
+        },
+      },
+    });
+  }
 
-        console.log('DATABASE_URL is:', process.env.DATABASE_URL)
-    }
-    cleanDb(){
-        return this.$transaction([
-            this.bookmark.deleteMany(),
-            this.user.deleteMany()
-        ])
-    }
+  async onModuleInit() {
+    await this.$connect();
+  }
 
+  async onModuleDestroy() {
+    await this.$disconnect();
+  }
+
+  async cleanDb() {
+    try {
+      return await this.$transaction([
+        this.bookmark.deleteMany(),
+        this.user.deleteMany(),
+      ]);
+    } catch (error) {
+      console.error('Error cleaning database:', error);
+      throw error;
+    }
+  }
 }
