@@ -6,6 +6,7 @@
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Yarn](https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+![Pactum](https://img.shields.io/badge/Pactum-000000?style=for-the-badge)
 
 ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=4ssh1.nestjs-bookmark-api)
 
@@ -13,7 +14,7 @@
 
 ## 🚀 Project Overview
 
-This is a RESTful API for managing personal bookmarks, built with **NestJS** and **Express**, using **Prisma ORM** connected to a **PostgreSQL** database. It is containerized with **Docker** and managed with **Yarn** workspaces.
+This is a RESTful API for managing personal bookmarks, built with **NestJS** and **Express**, using **Prisma ORM** connected to a **PostgreSQL** database. It is containerized with **Docker** and managed with **Yarn** workspaces. Tested end-to-end with **Pactum**
 
 ---
 
@@ -24,7 +25,7 @@ This is a RESTful API for managing personal bookmarks, built with **NestJS** and
 - ✅ Dockerized for development
 - ✅ Environment-based configuration
 - ✅ PostgreSQL with Prisma ORM
-- ⏳ End-to-End Testing (Coming soon)
+- ✅ End-to-End Testing 
 
 ---
 
@@ -36,7 +37,7 @@ This is a RESTful API for managing personal bookmarks, built with **NestJS** and
 - **PostgreSQL** (Database)
 - **Docker & Docker Compose** (Containerization)
 - **Yarn** (Package manager)
-- **Jest** (Testing — coming soon)
+- **Pactum** (Testing)
 
 ---
 
@@ -48,6 +49,12 @@ This is a RESTful API for managing personal bookmarks, built with **NestJS** and
 .env.test
 .prettierrc
 dist
+docker-compose.yml
+eslint.config.mjs
+generated
+nest-cli.json
+package.json
+prisma
 README.md
 src
 ├── app.module.ts
@@ -111,7 +118,6 @@ yarn test:e2e
 
 ## ✅ Future Tasks
 
-- Add E2E tests using @nestjs/testing
 - Add Swagger/OpenAPI documentation
 - Add Rate Limiting & Logging
 - CI/CD with GitHub Actions
